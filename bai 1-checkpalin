@@ -1,0 +1,25 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+bool checkpalin[1003][1003];
+void buildcheck(string s){
+  for(int len=1;len<=s.length();len++){
+   for(int i=0;i<s.length();i++){
+      if(len==1){checkpalin[i][i]=1;cout<<i<<i<<" ";}
+      else if(len==2&&i<s.length()-1&&s[i]==s[i+1]){checkpalin[i][i+1]=1;cout<<i<<i+1<<" ";}
+      else{
+         int j=i+len-1;
+         if(j==s.length()){break;}
+         else if(s[i]==s[j]&&checkpalin[i+1][j-1]==1){checkpalin[i][j]=1;cout<<i<<j<<" " ;}
+      }
+   }
+  }
+}
+int main () 
+{
+   string s;
+   cin>>s;
+   buildcheck (s);
+   return 0;
+   }
